@@ -1,4 +1,4 @@
-# doclever_dockerfiles
+# doclever
 DOClever的Dockerfile
 
 ## Introduce
@@ -8,7 +8,7 @@ DOClever的Dockerfile
 
 ### Option 1
 直接在docker命令行中增加mongodb的参数
-```docker run doclever:6.2.0 --db mongodb://user:password@host:27017/dbname```
+```docker run i11cn/doclever:6.2.0 --db mongodb://user:password@host:27017/dbname```
 
 ### Option 2
 通过docker-compose启动
@@ -17,7 +17,7 @@ version: '3.6'
 
 services:
   doclever:
-    image: doclever:6.2.0
+    image: i11cn/doclever:6.2.0
     restart: always
     ports:
     - '10000:10000'
@@ -29,5 +29,5 @@ services:
 ```
 {"db":"mongodb://user:password@host:27017/dbname", "filePath":"随意写", "port":10000}
 ```
-然后用命令行`docker run -v config.json:/DOClever-6.2.0/config.json doclever:6.2.0`来启动。  
-据测试，filePath和port不写，启动会出错，但是确实是无用了，因为命令行里会覆盖这俩参数，因此可以随意填写。
+然后用命令行`docker run -v config.json:/DOClever-6.2.0/config.json i11cn/doclever:6.2.0`来启动。  
+据测试，filePath和port不写，启动会出错，但是确实是没有用到，因为命令行里会覆盖这俩参数，因此可以随意填写。
