@@ -2,8 +2,7 @@ FROM node:10.16.0-alpine
 
 ARG VERSION=6.2.0
 
-ADD https://github.com/sx1989827/DOClever/archive/${VERSION}.tar.gz /
-RUN tar -xvf ${VERSION}.tar.gz && rm ${VERSION}.tar.gz && echo "{}" > /DOClever-${VERSION}/config.json && sed -i "s/baseUrl:\"http:\/\//baseUrl:location.protocol+\"\/\//g" /DOClever-${VERSION}/Client/dist/vendor.bundle.js && sed -i "s/host:\"http:\/\//host:location.protocol+\"\/\//g" /DOClever-${VERSION}/Client/dist/vendor.bundle.js
+RUN wget -c https://github.com/sx1989827/DOClever/archive/${VERSION}.tar.gz && tar -xf ${VERSION}.tar.gz && rm ${VERSION}.tar.gz && echo "{}" > /DOClever-${VERSION}/config.json && sed -i "s/baseUrl:\"http:\/\//baseUrl:location.protocol+\"\/\//g" /DOClever-${VERSION}/Client/dist/vendor.bundle.js && sed -i "s/host:\"http:\/\//host:location.protocol+\"\/\//g" /DOClever-${VERSION}/Client/dist/vendor.bundle.js
 
 VOLUME /DOClever/upload
 EXPOSE 10000
